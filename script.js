@@ -5,27 +5,65 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── LENIS SMOOTH SCROLL ──
-  // Same library used by Framer sites
-  const lenis = new Lenis({
-    duration: 1.4,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    smoothTouch: false,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let lenis = null;
+  let lenisRaf = null;
+
+  if (window.Lenis && !reduceMotion.matches) {
+    lenis = new Lenis({
+      duration: 0.85,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smoothWheel: true,
+      syncTouch: false,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+    });
+
+    const raf = (time) => {
+      lenis.raf(time);
+      lenisRaf = requestAnimationFrame(raf);
+    };
+    lenisRaf = requestAnimationFrame(raf);
+
+    const handleReducedMotionChange = (event) => {
+      if (event.matches && lenis) {
+        cancelAnimationFrame(lenisRaf);
+        lenis.destroy();
+        lenis = null;
+      }
+    };
+
+    if (reduceMotion.addEventListener) {
+      reduceMotion.addEventListener('change', handleReducedMotionChange);
+    } else {
+      reduceMotion.addListener(handleReducedMotionChange);
+    }
   }
-  requestAnimationFrame(raf);
 
   // ── CURSOR GLOW ──
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top  = e.clientY + 'px';
-  });
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (canHover && !reduceMotion.matches) {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    let glowX = 0;
+    let glowY = 0;
+    let glowQueued = false;
+
+    document.addEventListener('pointermove', e => {
+      glowX = e.clientX;
+      glowY = e.clientY;
+
+      if (!glowQueued) {
+        glowQueued = true;
+        requestAnimationFrame(() => {
+          glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+          glowQueued = false;
+        });
+      }
+    }, { passive: true });
+  }
 
   // ── THEME TOGGLE ──
   const saved = localStorage.getItem('pa-theme');
@@ -45,9 +83,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── NAV SCROLL ──
   const nav = document.querySelector('nav');
-  lenis.on('scroll', ({ scroll }) => {
-    nav.classList.toggle('scrolled', scroll > 40);
-  });
+  let navScrolled = false;
+  const updateNav = (scroll) => {
+    const shouldBeScrolled = scroll > 40;
+    if (shouldBeScrolled !== navScrolled) {
+      nav.classList.toggle('scrolled', shouldBeScrolled);
+      navScrolled = shouldBeScrolled;
+    }
+  };
+
+  if (nav) {
+    updateNav(window.scrollY);
+    window.addEventListener('scroll', () => updateNav(window.scrollY), { passive: true });
+    if (lenis) {
+      lenis.on('scroll', ({ scroll }) => updateNav(scroll));
+    }
+  }
 
   // ── MOBILE MENU ──
   const toggle = document.querySelector('.nav-toggle');
@@ -56,14 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('open');
       mobileMenu.classList.toggle('open');
-      if (mobileMenu.classList.contains('open')) lenis.stop();
-      else lenis.start();
+      if (lenis) {
+        if (mobileMenu.classList.contains('open')) lenis.stop();
+        else lenis.start();
+      }
     });
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         toggle.classList.remove('open');
         mobileMenu.classList.remove('open');
-        lenis.start();
+        if (lenis) lenis.start();
       });
     });
   }
@@ -122,17 +175,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── CARD TILT ──
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
-      card.style.transform = `translateY(-4px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+  if (canHover && !reduceMotion.matches) {
+    document.querySelectorAll('.card').forEach(card => {
+      let tiltQueued = false;
+      let pointerX = 0;
+      let pointerY = 0;
+
+      card.addEventListener('pointermove', e => {
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+
+        if (!tiltQueued) {
+          tiltQueued = true;
+          requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = (pointerX - rect.left) / rect.width  - 0.5;
+            const y = (pointerY - rect.top)  / rect.height - 0.5;
+            card.style.transform = `translateY(-4px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+            tiltQueued = false;
+          });
+        }
+      }, { passive: true });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
+  }
 
 });
-

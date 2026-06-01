@@ -42,7 +42,20 @@ body.light {
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+html.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+html.lenis.lenis-stopped {
+  overflow: clip;
+}
 
 body {
   background: var(--bg);
@@ -63,6 +76,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
   opacity: 0.4;
+  transform: translateZ(0);
 }
 
 /* ── TYPOGRAPHY ── */
@@ -225,6 +239,7 @@ body.light nav.scrolled       { background: rgba(245,245,250,0.88); }
   border-radius: var(--radius);
   padding: 28px;
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background 0.4s ease;
+  will-change: transform;
 }
 .card:hover {
   transform: translateY(-4px);
@@ -820,10 +835,12 @@ textarea.form-field-input { resize: vertical; min-height: 100px; }
   transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 .reveal-delay-1 { transition-delay: 0.12s; }
 .reveal-delay-2 { transition-delay: 0.24s; }
@@ -859,13 +876,31 @@ body {
 
 .cursor-glow {
   position: fixed;
+  left: 0;
+  top: 0;
   width: 400px; height: 400px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(124,109,250,0.06) 0%, transparent 70%);
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   z-index: 9999;
-  transition: left 0.12s ease, top 0.12s ease;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── RESPONSIVE ── */
