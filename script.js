@@ -4,6 +4,20 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── LENIS SMOOTH SCROLL ──
+  // Same library used by Framer sites
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+    smoothTouch: false,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
   // ── CURSOR GLOW ──
   const glow = document.createElement('div');
   glow.className = 'cursor-glow';
@@ -13,25 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     glow.style.top  = e.clientY + 'px';
   });
 
-  // ── SMOOTH SCROLL for anchor links ──
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
   // ── THEME TOGGLE ──
   const saved = localStorage.getItem('pa-theme');
   if (saved === 'light') document.body.classList.add('light');
 
   document.querySelectorAll('.theme-toggle').forEach(btn => {
-    // set correct icon on load
     btn.textContent = document.body.classList.contains('light') ? '🌙' : '☀️';
-
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light');
       const isLight = document.body.classList.contains('light');
@@ -44,11 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── NAV SCROLL ──
   const nav = document.querySelector('nav');
-  const onScroll = () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('scrolled', scroll > 40);
+  });
 
   // ── MOBILE MENU ──
   const toggle = document.querySelector('.nav-toggle');
@@ -57,18 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('open');
       mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      if (mobileMenu.classList.contains('open')) lenis.stop();
+      else lenis.start();
     });
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         toggle.classList.remove('open');
         mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+        lenis.start();
       });
     });
   }
 
   // ── SCROLL REVEAL ──
+  // Staggered, silky smooth reveals
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // ── STAT COUNTER ANIMATION ──
@@ -94,11 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const target   = parseFloat(el.dataset.target);
     const prefix   = el.dataset.prefix || '';
     const suffix   = el.dataset.suffix || '';
-    const duration = 1200;
+    const duration = 1400;
     const start    = performance.now();
     const update   = (now) => {
       const progress = Math.min((now - start) / duration, 1);
-      const ease     = 1 - Math.pow(1 - progress, 3);
+      const ease     = 1 - Math.pow(1 - progress, 4);
       el.textContent = prefix + Math.floor(target * ease) + suffix;
       if (progress < 1) requestAnimationFrame(update);
       else el.textContent = prefix + target + suffix;

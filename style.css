@@ -97,12 +97,13 @@ nav {
   transition: background var(--transition), backdrop-filter var(--transition), padding var(--transition);
 }
 nav.scrolled {
-  background: rgba(10,10,15,0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 14px 0;
   border-bottom: 1px solid var(--border);
 }
+body:not(.light) nav.scrolled { background: rgba(10,10,15,0.88); }
+body.light nav.scrolled       { background: rgba(245,245,250,0.88); }
 .nav-inner {
   display: flex;
   align-items: center;
@@ -816,19 +817,19 @@ textarea.form-field-input { resize: vertical; min-height: 100px; }
 /* ── SCROLL ANIMATIONS ── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1),
-              transform 0.65s cubic-bezier(0.4,0,0.2,1);
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+.reveal-delay-5 { transition-delay: 0.60s; }
 
 /* ── THEME TRANSITION ── */
 body {
