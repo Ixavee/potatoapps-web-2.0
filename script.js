@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `Name: ${name}\nEmail: ${email}\nApp: ${app}\n\n${message}`
       );
       // ← Replace this with your real support email
-      window.location.href = `mailto:PUT_YOUR_EMAIL_HERE?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:connect.k4vxd@gmail.com?subject=${subject}&body=${body}`;
     });
   }
 
