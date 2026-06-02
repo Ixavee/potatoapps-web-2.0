@@ -8,6 +8,10 @@
   <meta property="og:title" content="Potato Apps | Lightweight Offline Android Apps" />
   <meta property="og:description" content="Simple Android apps that stay lightweight, offline-friendly, and easy to use." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#070707" />
+  <link rel="icon" type="image/png" href="assets/status-saver-icon.png" />
+  <link rel="apple-touch-icon" href="assets/status-saver-icon.png" />
+  <meta property="og:image" content="assets/status-saver-icon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,7 +20,7 @@
   <nav>
     <div class="container nav-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="nav-links">
@@ -26,7 +30,7 @@
         <li><a href="support.html">Support</a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:12px;">
-        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
         <div class="nav-toggle" aria-label="Menu">
           <span></span><span></span><span></span>
         </div>
@@ -96,7 +100,7 @@
           <div class="mockup-ring mockup-ring-2"></div>
           <div class="mockup-ring mockup-ring-3"></div>
           <div class="app-mockup">
-            <div class="app-mockup-icon">💾</div>
+            <div class="app-mockup-icon"><img class="app-icon-img" src="assets/status-saver-icon.png" alt="Status Saver app icon" /></div>
             <div class="app-mockup-name">Status Saver</div>
             <div class="app-mockup-sub">by Potato Apps</div>
           </div>
@@ -173,21 +177,27 @@
           </div>
         </div>
         <div class="card future-small-card reveal reveal-delay-1">
-          <div class="future-icon">🔧</div>
+          <div class="future-icon">
+            <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0-5.4 5.4l-5.1 5.1a2.1 2.1 0 0 0 3 3l5.1-5.1a4.5 4.5 0 0 0 5.4-5.4l-3.1 3.1-3-3 3.1-3.1Z"/></svg>
+          </div>
           <div>
             <h3>Everyday utilities</h3>
             <p>Simple tools for common Android tasks.</p>
           </div>
         </div>
         <div class="card future-small-card reveal reveal-delay-2">
-          <div class="future-icon">🖼️</div>
+          <div class="future-icon">
+            <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="m8 14 2.5-2.5 2.5 2.5 2-2 3 3"/><circle cx="9" cy="9" r="1"/></svg>
+          </div>
           <div>
             <h3>Media helpers</h3>
             <p>Fast, clear workflows for personal media management.</p>
           </div>
         </div>
         <div class="card future-small-card reveal reveal-delay-3">
-          <div class="future-icon">🔒</div>
+          <div class="future-icon">
+            <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          </div>
           <div>
             <h3>Clear privacy notes</h3>
             <p>No ads, no tracking, no analytics — always.</p>
@@ -218,7 +228,7 @@
   <footer>
     <div class="container footer-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="footer-links">

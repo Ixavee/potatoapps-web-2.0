@@ -68,15 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── THEME TOGGLE ──
   const saved = localStorage.getItem('pa-theme');
   if (saved === 'light') document.body.classList.add('light');
+  const themeIcons = {
+    light: '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 1 0 9 9 7 7 0 1 1-9-9Z"/></svg>',
+    dark: '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg>',
+  };
+  const setThemeIcon = (button, isLight) => {
+    button.innerHTML = isLight ? themeIcons.light : themeIcons.dark;
+  };
 
   document.querySelectorAll('.theme-toggle').forEach(btn => {
-    btn.textContent = document.body.classList.contains('light') ? '🌙' : '☀️';
+    setThemeIcon(btn, document.body.classList.contains('light'));
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light');
       const isLight = document.body.classList.contains('light');
       localStorage.setItem('pa-theme', isLight ? 'light' : 'dark');
       document.querySelectorAll('.theme-toggle').forEach(b => {
-        b.textContent = isLight ? '🌙' : '☀️';
+        setThemeIcon(b, isLight);
       });
     });
   });

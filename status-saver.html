@@ -7,6 +7,10 @@
   <meta name="description" content="Status Saver is a lightweight offline Android utility for saving selected local status media to your own device without ads, accounts, analytics, tracking, paywalls, subscriptions, or data collection." />
   <meta property="og:title" content="Status Saver | Potato Apps" />
   <meta property="og:description" content="Offline Android status saving, made by Potato Apps." />
+  <meta name="theme-color" content="#070707" />
+  <link rel="icon" type="image/png" href="assets/status-saver-icon.png" />
+  <link rel="apple-touch-icon" href="assets/status-saver-icon.png" />
+  <meta property="og:image" content="assets/status-saver-icon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,7 +18,7 @@
   <nav>
     <div class="container nav-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="nav-links">
@@ -23,7 +27,7 @@
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="support.html">Support</a></li>
       </ul>
-      <div style="display:flex;align-items:center;gap:12px;"><button class="theme-toggle" aria-label="Toggle theme">☀️</button><div class="nav-toggle"><span></span><span></span><span></span></div></div>
+      <div style="display:flex;align-items:center;gap:12px;"><button class="theme-toggle" aria-label="Toggle theme"></button><div class="nav-toggle"><span></span><span></span><span></span></div></div>
     </div>
   </nav>
   <div class="nav-mobile">
@@ -38,7 +42,7 @@
     <div class="glow-blob ss-hero-blob"></div>
     <div class="container ss-hero-content">
       <div class="reveal" style="display:flex;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap;">
-        <div class="app-icon-box" style="width:64px;height:64px;font-size:28px;border-radius:18px;">💾</div>
+        <div class="app-icon-box" style="width:64px;height:64px;border-radius:18px;"><img class="app-icon-img" src="assets/status-saver-icon.png" alt="Status Saver app icon" /></div>
         <div>
           <h1 style="font-size:clamp(1.6rem,4vw,2.8rem);margin-bottom:4px;">Status Saver</h1>
           <p style="color:var(--muted);font-size:0.9rem;margin:0;">Offline Android status saving, made by Potato Apps</p>
@@ -112,17 +116,23 @@
   <div class="container">
     <div class="cards-trio">
       <div class="card reveal">
-        <div class="card-icon">📱</div>
+        <div class="card-icon">
+          <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        </div>
         <h3>Android first</h3>
         <p>Built for Android users who want a straightforward local utility that just works.</p>
       </div>
       <div class="card reveal reveal-delay-1">
-        <div class="card-icon">🔒</div>
+        <div class="card-icon">
+          <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.6 8.8a1.2 1.2 0 0 1-.8 0C7.5 20.5 4 18 4 13V6.5a1 1 0 0 1 .7-1L12 3l7.3 2.5a1 1 0 0 1 .7 1V13Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
         <h3>No tracking</h3>
         <p>No ads, analytics SDKs, tracking pixels, accounts, login screens, paywalls, or subscriptions.</p>
       </div>
       <div class="card reveal reveal-delay-2">
-        <div class="card-icon">📬</div>
+        <div class="card-icon">
+          <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </div>
         <h3>Support ready</h3>
         <p>Questions and bug reports can go directly to the support email. No ticket system, no bots.</p>
       </div>
@@ -132,7 +142,7 @@
   <footer>
     <div class="container footer-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="footer-links">

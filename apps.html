@@ -7,6 +7,10 @@
   <meta name="description" content="Browse Android apps from Potato Apps, including lightweight offline utilities built without ads, accounts, analytics, tracking, paywalls, subscriptions, or data collection." />
   <meta property="og:title" content="Apps | Potato Apps" />
   <meta property="og:description" content="Browse Android apps from Potato Apps." />
+  <meta name="theme-color" content="#070707" />
+  <link rel="icon" type="image/png" href="assets/status-saver-icon.png" />
+  <link rel="apple-touch-icon" href="assets/status-saver-icon.png" />
+  <meta property="og:image" content="assets/status-saver-icon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,7 +18,7 @@
   <nav>
     <div class="container nav-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="nav-links">
@@ -23,7 +27,7 @@
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="support.html">Support</a></li>
       </ul>
-      <div style="display:flex;align-items:center;gap:12px;"><button class="theme-toggle" aria-label="Toggle theme">☀️</button><div class="nav-toggle"><span></span><span></span><span></span></div></div>
+      <div style="display:flex;align-items:center;gap:12px;"><button class="theme-toggle" aria-label="Toggle theme"></button><div class="nav-toggle"><span></span><span></span><span></span></div></div>
     </div>
   </nav>
   <div class="nav-mobile">
@@ -50,7 +54,7 @@
       <!-- Status Saver -->
       <div class="card app-card reveal">
         <div class="app-card-header">
-          <div class="app-icon-box">💾</div>
+          <div class="app-icon-box"><img class="app-icon-img" src="assets/status-saver-icon.png" alt="Status Saver app icon" /></div>
           <div class="app-card-info">
             <h3>Status Saver</h3>
             <span class="badge badge-accent" style="margin-top:4px;">Coming Soon</span>
@@ -73,7 +77,9 @@
       <!-- Next App placeholder -->
       <div class="card app-card reveal reveal-delay-1">
         <div class="app-card-header">
-          <div class="app-icon-box-empty">🥔</div>
+          <div class="app-icon-box-empty">
+            <svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          </div>
           <div class="app-card-info">
             <h3>Next Potato App</h3>
             <span class="badge badge-muted" style="margin-top:4px;">Planning</span>
@@ -97,7 +103,7 @@
   <footer>
     <div class="container footer-inner">
       <a class="nav-logo" href="index.html">
-        <div class="nav-logo-icon">🥔</div>
+        <span class="nav-logo-icon"><img class="brand-icon-img" src="assets/potato-apps-logo.png" alt="" /></span>
         Potato Apps
       </a>
       <ul class="footer-links">
