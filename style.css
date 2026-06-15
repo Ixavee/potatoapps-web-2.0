@@ -675,6 +675,9 @@ footer {
   border: 1px solid var(--border);
   color: var(--accent2);
 }
+.luna-hero .ss-hero-blob {
+  background: rgba(186,150,255,0.14);
+}
 .app-card-info { flex: 1; }
 .app-card-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .app-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
