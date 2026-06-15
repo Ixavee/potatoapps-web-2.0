@@ -504,6 +504,35 @@ body.light nav.scrolled       { background: rgba(248,242,228,0.9); }
 }
 .featured-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
+body.light .featured .app-mockup {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(244,217,139,0.42), transparent 38%),
+    linear-gradient(180deg, rgba(255,252,242,0.96), rgba(239,224,196,0.94));
+  border-color: rgba(169,111,34,0.22);
+  box-shadow: 0 34px 72px rgba(117,76,20,0.16), 0 0 42px rgba(214,166,74,0.16);
+}
+
+body.light .featured .app-mockup::before {
+  background: linear-gradient(135deg, rgba(214,166,74,0.26) 0%, rgba(255,255,255,0.08) 58%, transparent 100%);
+}
+
+body.light .featured .app-mockup-icon {
+  box-shadow: 0 14px 30px rgba(117,76,20,0.2), 0 0 0 1px rgba(255,255,255,0.72);
+}
+
+body.light .featured .app-mockup-name {
+  color: #21190f;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.58);
+}
+
+body.light .featured .app-mockup-sub {
+  color: #7a6250;
+}
+
+body.light .featured .mockup-ring {
+  border-color: rgba(169,111,34,0.18);
+}
+
 /* ── WHY CARDS ── */
 .why { padding: 80px 0; }
 .why-header { text-align: center; margin-bottom: 56px; }
