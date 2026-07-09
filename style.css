@@ -739,7 +739,7 @@ footer {
   color: var(--muted);
 }
 .app-card-desc { color: var(--muted); font-size: 0.9rem; font-weight: 300; line-height: 1.6; }
-.app-card-btns { display: flex; gap: 10px; margin-top: auto; }
+.app-card-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
 
 /* ── STATUS SAVER PAGE ── */
 .ss-hero { padding: 150px 0 80px; position: relative; overflow: hidden; }
