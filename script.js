@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = document.getElementById('f-message')?.value || '';
       const subject = encodeURIComponent(`[${app || 'Potato Apps'}] Support Request`);
       const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nApp: ${app}\n\n${message}`);
-      window.location.href = `mailto:connect.k4vxd@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:potatoappsdev@gmail.com?subject=${subject}&body=${body}`;
     });
   }
 
