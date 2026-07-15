@@ -157,6 +157,9 @@ body.light nav.scrolled       { background: rgba(248,242,228,0.9); }
   display: block;
   object-fit: cover;
 }
+.krate-icon-img {
+  object-fit: contain;
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -726,6 +729,9 @@ footer {
 }
 .luna-hero .ss-hero-blob {
   background: rgba(186,150,255,0.14);
+}
+.krate-hero .ss-hero-blob {
+  background: rgba(214,118,39,0.14);
 }
 .app-card-info { flex: 1; }
 .app-card-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
