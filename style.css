@@ -737,7 +737,7 @@ footer {
 .app-card-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .app-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .app-tag {
-  padding: 3px 10px;
+  padding: 3px 7px;
   background: rgba(244,217,139,0.055);
   border: 1px solid var(--border);
   border-radius: 50px;
