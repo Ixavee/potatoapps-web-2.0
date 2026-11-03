@@ -181,6 +181,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── PRIVACY POLICY CHOOSER ──
+  const privacyDialog = document.getElementById('privacy-policy-dialog');
+  const privacyDialogTrigger = document.getElementById('privacy-policy-trigger');
+  const privacyDialogClose = privacyDialog?.querySelector('.privacy-dialog-close');
+
+  if (privacyDialog && privacyDialogTrigger && privacyDialogClose) {
+    privacyDialogTrigger.addEventListener('click', () => {
+      privacyDialog.showModal();
+      privacyDialog.querySelector('a')?.focus();
+    });
+
+    privacyDialogClose.addEventListener('click', () => privacyDialog.close());
+    privacyDialog.addEventListener('close', () => privacyDialogTrigger.focus());
+  }
+
   // ── CARD TILT ──
   if (canHover && !reduceMotion.matches) {
     document.querySelectorAll('.card').forEach(card => {
