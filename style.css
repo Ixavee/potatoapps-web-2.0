@@ -394,6 +394,7 @@ body.light nav.scrolled       { background: rgba(248,242,228,0.9); }
   position: relative;
   z-index: 1;
 }
+.stats-strip--two { grid-template-columns: repeat(2, 1fr); }
 .stat-item {
   background: var(--bg2);
   padding: 28px 24px;
